@@ -19,6 +19,11 @@ The plugin may, but doesn't have to involve blockchains such as MINA  (the natur
 Since the authorization is given by a centralized authority (for example a server exposing a protected API) the proofs may regard any data that is verifiable by this authority ( blockchains, 3rd party database, trusted KYC provider's API data, trusted public keys, NFTs, etc).
 As of today, MinAuth provides a couple of demonstrational plugins.
 
+#### Plugin starter project
+
+There's a repository that you can clone to quickly set up your own plugin and get a bit more in-depth introduction on how to develop MinAuth plugins.
+You can find it [https://github.com/adamczykm/minauth-plugin-starter-pack](here).
+
 ### Provided plugins
 
 **A Simple Preimage Plugin** [:link:](https://github.com/mlabs-haskell/MinAuth/tree/develop/minauth-plugins/minauth-simple-preimage-plugin)
