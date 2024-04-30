@@ -1,6 +1,6 @@
 {
   "name": "minauth-demo-client",
-  "version": "0.10.0-alpha",
+  "version": "0.11.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -21,10 +21,10 @@
     "eslint-config-next": "14.0.3",
     "ethers": "^6.9.2",
     "fp-ts": "^2.16.2",
-    "minauth": "0.10.0-alpha",
-    "minauth-erc721-timelock-plugin": "^0.10.0-alpha",
-    "minauth-merkle-membership-plugin": "0.10.0-alpha",
-    "minauth-simple-preimage-plugin": "0.10.0-alpha",
+    "minauth": "file:./../../minauth",
+    "minauth-erc721-timelock-plugin": "file:./../../minauth-plugins/minauth-erc721-timelock-plugin",
+    "minauth-merkle-membership-plugin": "file:./../../minauth-plugins/minauth-merkle-membership-plugin",
+      "minauth-simple-preimage-plugin": "file:./../../minauth-plugins/minauth-simple-preimage-plugin",
     "next": "^14.0.3",
     "o1js": "0.16.0",
     "postcss": "8.4.32",
