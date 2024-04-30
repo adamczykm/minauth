@@ -50,8 +50,15 @@ jobs:
           for package in "${packages[@]}"; do
             echo "Building package: ${package}"
             cd $package
-            npm install-ci
-            npm run build
+            if [[ "${package}" == "./minauth-demo/minauth-demo-client" ]]; then
+              echo "Running special build command for minauth-demo-client"
+              # Special command for minauth-demo-client
+              npm run dev-kill
+            else
+              # Standard build commands for other packages
+              npm install-ci
+              npm run build
+            fi
             cd -
           done
         shell: bash
