@@ -1,0 +1,58 @@
+name: Sequential Build of All Packages
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # Adjust Node.js version as necessary
+
+      - name: Build minauth
+        run: |
+          echo "Building minauth..."
+          cd ./minauth
+          npm install
+          npm run build
+
+      - name: Build minauth-erc721-timelock-plugin
+        run: |
+          echo "Building minauth-erc721-timelock-plugin..."
+          cd ./minauth-plugins/minauth-erc721-timelock-plugin
+          npm install-ci
+          npm run build
+
+      - name: Build minauth-merkle-membership-plugin
+        run: |
+          echo "Building minauth-merkle-membership-plugin..."
+          cd ./minauth-plugins/minauth-merkle-membership-plugin
+          npm install
+          npm run build
+
+      - name: Build minauth-simple-preimage-plugin
+        run: |
+          echo "Building minauth-simple-preimage-plugin..."
+          cd ./minauth-plugins/minauth-simple-preimage-plugin
+          npm install
+          npm run build
+
+      - name: Build minauth-demo-server
+        run: |
+          echo "Building minauth-demo-server..."
+          cd ./minauth-demo/minauth-demo-server
+          npm install
+          npm run build
+
+      - name: Build minauth-demo-client
+        run: |
+          echo "Building minauth-demo-client..."
+          cd ./minauth-demo/minauth-demo-client
+          npm install
+          npm run dev-kill
