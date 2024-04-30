@@ -3,10 +3,12 @@
   "version": "0.11.0",
   "private": true,
   "scripts": {
+    "install-ci": "npm install --unsafe-perm=true",
     "dev": "next dev",
-    "dev-kill": "bash -c 'next dev & PID=$!; sleep 3; kill $PID; exit 0",
+    "dev-kill": "bash -c 'next dev & PID=$!; sleep 5; kill $PID; exit 0'",
     "build": "node --max-old-space-size=8192 ./node_modules/.bin/next build",
     "start": "next start",
+    "test": "echo \"Error: no tests here\" && exit 0",
     "lint": "next lint",
     "ts-watch": "tsc --noEmit --incremental --watch"
   },

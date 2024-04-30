@@ -1,0 +1,41 @@
+name: Build Plugin Simple (NPM)
+
+on:
+  workflow_dispatch:
+    inputs:
+      package_name:
+        description: 'Name of the package'
+        required: true
+        default: 'default-package'
+      package_path:
+        description: 'Path to the package directory'
+        required: true
+        default: 'minauth-plugins/default-package'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Use the LTS version of Node.js
+
+      - name: Cache Node.js modules for ${{ github.event.inputs.package_name }}
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies in ${{ github.event.inputs.package_name }}
+        run: npm install
+        working-directory: ${{ github.event.inputs.package_path }}
+
+      - name: Build ${{ github.event.inputs.package_name }}
+        run: npm run build
+        working-directory: ${{ github.event.inputs.package_path }}

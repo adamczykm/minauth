@@ -7,7 +7,9 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "tsc && copyfiles -u 1 eth-contract/contracts/*.sol dist/",
+    "install-ci": "npm install",
+    "intall": "npm install",
+    "build": "tsc -p tsconfig.json",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc './**/*.ts' --write",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
@@ -19,6 +21,7 @@
     "express": "^4.18.2",
     "fp-ts": "^2.16.1",
     "minauth": "file:./../../minauth",
+    "tslog": "^4.9.2",
     "web3": "^4.3.0",
     "zod": "^3.22.2"
   },

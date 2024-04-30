@@ -1,0 +1,11 @@
+name: Build MinAuth Library
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-minauth-library:
+    uses: ./.github/workflows/reusable-npm-build.yaml
+    with:
+      package_name: 'minauth'
+      package_path: './minauth'

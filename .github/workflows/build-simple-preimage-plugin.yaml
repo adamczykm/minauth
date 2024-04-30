@@ -1,0 +1,12 @@
+name: Build All Packages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-simple-preimage-plugin:
+    uses: ./.github/workflows/reusable-npm-build.yaml
+    with:
+      package_name: 'minauth-simple-preimage-plugin'
+      package_path: './minauth-plugins/minauth-simple-preimage-plugin'
+

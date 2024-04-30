@@ -1,0 +1,45 @@
+name: Reusable Build Workflow
+
+on:
+  workflow_call:
+    inputs:
+      package_name:
+        description: 'Name of the package'
+        required: true
+        type: string
+      package_path:
+        description: 'Path to the package directory'
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Use the LTS version of Node.js
+
+      - name: Cache Node.js modules for ${{ inputs.package_name }}
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install npm packages for this package and subpackages
+        run: npm install-ci
+        working-directory: ${{ inputs.package_path }}
+
+      - name: Build the package using the 'build' npm script
+        run: npm run build
+        working-directory: ${{ inputs.package_path }}
+        env:
+          ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+          SEPOLIA_PRIVATE_KEY: ${{ secrets.SEPOLIA_PRIVATE_KEY }}
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}

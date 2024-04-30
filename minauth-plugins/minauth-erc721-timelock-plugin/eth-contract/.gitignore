@@ -10,7 +10,6 @@
 
 # TypeChain output
 /typechain
-/typechain-types
 
 # Solidity coverage files
 /coverage
