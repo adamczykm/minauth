@@ -21,6 +21,7 @@ jobs:
           cd ./minauth
           npm install
           npm run build
+          npm run test
 
       - name: Build minauth-erc721-timelock-plugin
         run: |
@@ -28,6 +29,7 @@ jobs:
           cd ./minauth-plugins/minauth-erc721-timelock-plugin
           npm install-ci
           npm run build
+          npm run test
 
       - name: Build minauth-merkle-membership-plugin
         run: |
@@ -35,6 +37,7 @@ jobs:
           cd ./minauth-plugins/minauth-merkle-membership-plugin
           npm install
           npm run build
+          npm run test
 
       - name: Build minauth-simple-preimage-plugin
         run: |
@@ -42,6 +45,7 @@ jobs:
           cd ./minauth-plugins/minauth-simple-preimage-plugin
           npm install
           npm run build
+          npm run test
 
       - name: Build minauth-demo-server
         run: |
@@ -49,6 +53,7 @@ jobs:
           cd ./minauth-demo/minauth-demo-server
           npm install
           npm run build
+          npm run test
 
       - name: Build minauth-demo-client
         run: |
@@ -56,3 +61,4 @@ jobs:
           cd ./minauth-demo/minauth-demo-client
           npm install
           npm run dev-kill
+          npm run test
