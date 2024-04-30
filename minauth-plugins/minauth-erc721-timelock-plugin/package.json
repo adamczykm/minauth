@@ -7,7 +7,9 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "tsc && copyfiles -u 1 eth-contract/contracts/*.sol dist/",
+    "install-ci": "cd eth-contract && npm install --unsafe-perm=true  && cd .. && npm install --unsafe-perm=true",
+    "intall": "cd eth-contract && npm install && cd .. && npm install",
+    "build": "cd eth-contract && npm run compile && cd .. && tsc && copyfiles -u 1 eth-contract/contracts/*.sol dist/",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc './**/*.ts' --write",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"

@@ -10,6 +10,7 @@
     "dist/**/*"
   ],
   "scripts": {
+    "install-ci": "npm install --unsafe-perm=true",
     "build": "tsc -p tsconfig.json",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc './**/*.ts' --write",

@@ -3,9 +3,11 @@
   "version": "0.10.0-alpha",
   "private": true,
   "scripts": {
+    "install-ci": "npm install --unsafe-perm=true",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "echo \"Error: no tests here\" && exit 0",
     "lint": "next lint",
     "ts-watch": "tsc --noEmit --incremental --watch"
   },

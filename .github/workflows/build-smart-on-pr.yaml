@@ -1,0 +1,57 @@
+name: Conditional Build on Pull Request
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Determine Builds
+        id: determine-builds
+        run: |
+          # Initialize an empty array to hold packages that need building
+          declare -A changed_packages
+
+          # Check for changes in each package and update the list of packages that need building based on dependencies
+          if git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -q './minauth'; then
+            changed_packages["./minauth"]="minauth"
+          fi
+          if git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -q './minauth-plugins/minauth-erc721-timelock-plugin'; then
+            changed_packages["./minauth-plugins/minauth-erc721-timelock-plugin"]="minauth-erc721-timelock-plugin"
+          fi
+          if git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -q './minauth-plugins/minauth-merkle-membership-plugin'; then
+            changed_packages["./minauth-plugins/minauth-merkle-membership-plugin"]="minauth-merkle-membership-plugin"
+          fi
+          if git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -q './minauth-plugins/minauth-simple-preimage-plugin'; then
+            changed_packages["./minauth-plugins/minauth-simple-preimage-plugin"]="minauth-simple-preimage-plugin"
+          fi
+          if git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -q './minauth-demo/minauth-demo-server'; then
+            changed_packages["./minauth-demo/minauth-demo-server"]="minauth-demo-server"
+          fi
+          if git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -q './minauth-demo/minauth-demo-client'; then
+            changed_packages["./minauth-demo/minauth-demo-client"]="minauth-demo-client"
+          fi
+
+          # Convert package paths to JSON array
+          echo "::set-output name=packages::$(echo $(jq -nc '$ARGS.positional' --args "${!changed_packages[@]}"))"
+
+      - name: Build packages
+        run: |
+          packages=(${{ steps.determine-builds.outputs.packages }})
+          for package in "${packages[@]}"; do
+            echo "Building package: ${package}"
+            cd $package
+            npm install-ci
+            npm run build
+            cd -
+          done
+        shell: bash

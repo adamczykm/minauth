@@ -1,15 +1,16 @@
 import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import '@nomicfoundation/hardhat-ignition-ethers';
-import dotenv from 'dotenv';
 
-const env = dotenv.config().parsed;
-if (!env) {
-  throw new Error('No .env file found');
+// Directly use process.env to access environment variables
+const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
+const SEPOLIA_PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY;
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+
+// Check if the required environment variables are set
+if (!ALCHEMY_API_KEY || !SEPOLIA_PRIVATE_KEY || !ETHERSCAN_API_KEY) {
+  throw new Error('Required environment variables are not set');
 }
-const ALCHEMY_API_KEY = env.ALCHEMY_API_KEY;
-const SEPOLIA_PRIVATE_KEY = env.SEPOLIA_PRIVATE_KEY;
-const ETHERSCAN_API_KEY = env.ETHERSCAN_API_KEY;
 
 const config: HardhatUserConfig = {
   solidity: '0.8.20',
