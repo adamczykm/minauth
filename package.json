@@ -1,9 +1,18 @@
 {
   "name": "minauth-project",
   "version": "0.12.0",
+  "workspaces": [
+	"minauth",
+	"minauth-demo/minauth-demo-client",
+	"minauth-demo/minauth-demo-server",
+	"minauth-plugins/minauth-erc721-timelock-plugin",
+	"minauth-plugins/minauth-merkle-membership-plugin",
+	"minauth-plugins/minauth-simple-preimage-plugin"
+  ],
   "description": "",
   "main": "index.js",
   "scripts": {
+    "mk_envrc": "sh ./devops/mkenvrc.sh .",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

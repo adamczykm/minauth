@@ -20,7 +20,7 @@
     "ethers": "^6.9.1",
     "express": "^4.18.2",
     "fp-ts": "^2.16.1",
-    "minauth": "file:./../../minauth",
+    "minauth": "workspace:*",
     "tslog": "^4.9.2",
     "web3": "^4.3.0",
     "zod": "^3.22.2"
