@@ -10,7 +10,7 @@ The zero-knowledge part is provided via MINA's o1js library.
 ## Core Components
 This repository is organized as a monorepo containing all the system's core components.
 
-### MinAuth Library  [:link:](https://github.com/mlabs-haskell/MinAuth/tree/develop/minauth)
+### MinAuth Library  [:link:](https://github.com/mlabs-haskell/MinAuth/tree/develop/library/minauth)
 The library provides all the core types and interfaces that allow for cooperation between the system's elements. It has functions and utilities that help quickly set up compatible authorization plugins.  Additionally, it contains tools that may be useful when working with MinAuth, for example, a plugin HTTP server, and a compatible passport.js strategy.
 
 ### MinAuth Plugins [:link:](https://github.com/mlabs-haskell/MinAuth/tree/develop/plugins)
@@ -40,7 +40,7 @@ The client can prove "membership" into the sets represented by merkle trees, by 
 The plugin then monitors the chain and the contract state (and events) to build a merkle tree of secret commitments.
 The prover can prove that
 
-### MinAuth Demo [:link:](https://github.com/mlabs-haskell/MinAuth/tree/develop/minauth-demo)
+### MinAuth Demo [:link:](https://github.com/mlabs-haskell/MinAuth/tree/develop/demo-apps)
 Part of MinAuth's value proposition is to show a way to connect these innovative technologies in a full-stack web application where all the system components are configured and set up to work together. Consider it an example of how MinAuth can be set up with JWT-based ZKP-backed authentication and a playground to test out plugins or build your own.
 
 ## Usage

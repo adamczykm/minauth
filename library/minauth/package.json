@@ -10,7 +10,7 @@
     "build": "tsc -p tsconfig.json",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "test": "echo \"E2E & integration tests are provided in the minauth-demo package.\" && jest --config jest.config.ts"
+    "test": "echo \"E2E & integration tests are provided in the minauth-demo-server package.\" && jest --config jest.config.ts"
   },
   "repository": {
     "type": "git",
