@@ -1,6 +1,6 @@
 {
   "name": "minauth-demo-server",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "",
   "type": "module",
   "main": "index.js",
@@ -33,7 +33,7 @@
     "minauth": "workspace:*",
     "minauth-erc721-timelock-plugin": "workspace:*",
     "minauth-merkle-membership-plugin": "workspace:*",
-      "minauth-simple-preimage-plugin": "workspace:*",
+    "minauth-simple-preimage-plugin": "workspace:*",
     "o1js": "0.16.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",

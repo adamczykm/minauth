@@ -1,6 +1,6 @@
 {
   "name": "minauth-demo-client",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "private": true,
   "scripts": {
     "install-ci": "bun install --unsafe-perm=true",
