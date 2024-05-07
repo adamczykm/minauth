@@ -5,9 +5,9 @@
 	"minauth",
 	"minauth-demo/minauth-demo-client",
 	"minauth-demo/minauth-demo-server",
-	"minauth-plugins/minauth-erc721-timelock-plugin",
-	"minauth-plugins/minauth-merkle-membership-plugin",
-	"minauth-plugins/minauth-simple-preimage-plugin"
+	"plugins/minauth-erc721-timelock-plugin",
+	"plugins/minauth-merkle-membership-plugin",
+	"plugins/minauth-simple-preimage-plugin"
   ],
   "description": "",
   "main": "index.js",
