@@ -2,9 +2,9 @@
   "name": "minauth-project",
   "version": "0.12.0",
   "workspaces": [
-	"library/minauth",
-	"demo-apps/*",
-	"plugins/*"
+    "library/minauth",
+    "demo-apps/*",
+    "plugins/*"
   ],
   "description": "",
   "main": "index.js",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
+    "@changesets/cli": "^2.27.1",
     "eslint": "^8.53.0",
     "eslint-config-next": "^14.0.2",
     "eslint-config-prettier": "^9.0.0",
@@ -27,7 +28,5 @@
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
-  "dependencies": {
-    "@changesets/cli": "^2.27.1"
-  }
+  "dependencies": {}
 }
