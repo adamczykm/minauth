@@ -112,7 +112,7 @@ const installBasicRoutes = (): PluginServer<void> =>
           .post('/verifyProof', handleVerifyProof(env))
           .post('/validateOutput', handleValidateOutput(env))
           .get('/plugins/activePlugins', handleActivePlugins(env))
-          .get('/health', (_, resp) => resp.status(200).json({}))
+          .get('/health', (_, resp) => {resp.status(200).json({})})
       )
     )
   );
@@ -127,7 +127,7 @@ const installFallbackHandlers = (): PluginServer<void> =>
     RTE.chain((logger) =>
       useExpressApp((app) =>
         app
-          .all('*', (_, resp) => resp.status(404).json({ error: 'bad route' }))
+          .all('*', (_, resp) => {resp.status(404).json({ error: 'bad route' });})
           .use(
             (
               err: unknown,

@@ -13,7 +13,7 @@ import { IPluginHost, PMap } from '../pluginhost.js';
 import { pipe } from 'fp-ts/lib/function.js';
 import { sequenceS } from 'fp-ts/lib/Apply.js';
 import { Logger } from '../../plugin/logger.js';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import { legacyCreateProxyMiddleware } from 'http-proxy-middleware';
 import { ErrorResponse, mkRequestTE } from '../../common/request.js';
 import z from 'zod';
 
@@ -137,7 +137,7 @@ export default class PluginServerProxyHost
       () => {
         app.use('/plugins/:pluginName/*', (req, res, next) => {
           // Setup the proxy middleware dynamically based on the pluginName
-          const proxy = createProxyMiddleware({
+          const proxy = legacyCreateProxyMiddleware ({
             target: `${this.serverUrl}`, // Target the base URL of the plugin server
             changeOrigin: true, // For vhosted sites, changes host header to match the target's host
             logLevel: 'debug' // Optional: adjust log level as needed
