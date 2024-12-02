@@ -24,7 +24,7 @@ export const MerkleMembershipProgram = ZkProgram({
   methods: {
     proveMembership: {
       privateInputs: [PrivateInput],
-      method(publicInput: PublicInput, privateInput: PrivateInput): void {
+      async method(publicInput: PublicInput, privateInput: PrivateInput) {
         privateInput.witness
           .calculateRoot(Poseidon.hash([privateInput.secret]))
           .assertEquals(publicInput.merkleRoot);

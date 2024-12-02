@@ -74,7 +74,7 @@ export class MembershipsProver
           ZkProgram.Program.baseCase(
             root,
             new ZkProgram.PrivateInput({ witness, secret })
-          ),
+          ).then((proof) => proof.proof),
         'failed in base case'
       );
 
@@ -102,7 +102,7 @@ export class MembershipsProver
                   ),
                 'failed in inductive case'
               ),
-              TE.chain((proof) => computeRecursiveProof(tail)(proof))
+              TE.chain((proof) => computeRecursiveProof(tail)(proof.proof))
             )
         )(l);
 

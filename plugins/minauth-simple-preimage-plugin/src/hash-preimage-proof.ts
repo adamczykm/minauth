@@ -8,9 +8,9 @@ export const ProvePreimageProgram = ZkProgram({
   methods: {
     baseCase: {
       privateInputs: [Field],
-      method(publicInput: Field, secretInput: Field) {
+      async method(publicInput: Field, secretInput: Field) {
         Poseidon.hash([secretInput]).assertEquals(publicInput);
-        return publicInput;
+        return { publicOutput: publicInput };
       }
     }
   }

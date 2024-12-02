@@ -16,8 +16,9 @@ export class TreeRootStorageContract extends SmartContract {
   @state(Field) treeRoot = State<Field>();
 
   /** o1js assumes that at least one method must be present */
-  @method foo() {}
-  deploy(args?: DeployArgs) {
+  @method
+  async foo() {}
+  async deploy(args?: DeployArgs) {
     super.deploy(args);
 
     this.account.permissions.set({

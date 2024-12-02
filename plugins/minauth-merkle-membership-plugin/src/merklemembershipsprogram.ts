@@ -39,36 +39,38 @@ export const Program = ZkProgram({
   methods: {
     baseCase: {
       privateInputs: [PrivateInput],
-      method(
+      async method(
         publicInput: PublicInput,
         privateInput: PrivateInput
-      ): PublicOutput {
+      ) {
         privateInput.witness
           .calculateRoot(Poseidon.hash([privateInput.secret]))
           .assertEquals(publicInput.merkleRoot);
-        return new PublicOutput({
+        let publicOutput = new PublicOutput({
           recursiveHash: publicInput.merkleRoot
         });
+
+        return {publicOutput};
       }
     },
 
     inductiveCase: {
       privateInputs: [SelfProof, PrivateInput],
-      method(
+      async method(
         publicInput: PublicInput,
         earlierProof: SelfProof<PublicInput, PublicOutput>,
         privateInput: PrivateInput
-      ): PublicOutput {
+      ) {
         earlierProof.verify();
         privateInput.witness
           .calculateRoot(Poseidon.hash([privateInput.secret]))
           .assertEquals(publicInput.merkleRoot);
-        return new PublicOutput({
+        let publicOutput = new PublicOutput({
           recursiveHash: Poseidon.hash([
             publicInput.merkleRoot,
             earlierProof.publicOutput.recursiveHash
-          ])
-        });
+          ])});
+        return {publicOutput};
       }
     }
   }

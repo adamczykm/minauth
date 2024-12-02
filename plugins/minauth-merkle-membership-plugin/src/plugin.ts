@@ -269,11 +269,9 @@ export class MerkleMembershipsPlugin
       NE.fromArray(input.merkleRoots)
     );
 
-    const deserializedProof = TE.fromIOEither(
-      IOE.tryCatch(
+    const deserializedProof = TE.tryCatch(
         () => ZkProgram.Proof(Program).fromJSON(input.proof),
         (err) => String(err)
-      )
     );
 
     return pipe(

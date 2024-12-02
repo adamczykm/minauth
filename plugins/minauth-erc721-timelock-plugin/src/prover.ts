@@ -123,7 +123,7 @@ export class Erc721TimelockProver
       throw e;
     }
     this.logger.info('Building proof finished.');
-    return proof.toJSON();
+    return proof.proof.toJSON();
   }
 
   async buildInputAndProve(userSecretInput: UserSecretInput) {

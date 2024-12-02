@@ -17,28 +17,28 @@
     "test": "echo \"Error: no tests here\" && exit 0"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "fp-ts": "^2.16.1",
+    "express": "^4.21.1",
+    "fp-ts": "^2.16.9",
     "minauth": "workspace:*",
-    "zod": "^3.22.2"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/axios": "^0.14.*",
-    "@types/express": "^4.17.17",
-    "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "@typescript-eslint/parser": "^6.8.0",
-    "eslint": "^8.51.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-deprecation": "^2.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "nodemon": "^3.0.1",
-    "prettier": "^3.0.3",
-    "ts-node": "^10.9.1",
+    "@types/express": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.1",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "o1js": "0.16.0"
+    "o1js": "2.1.0"
   },
   "keywords": [
     "authentication",

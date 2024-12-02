@@ -108,7 +108,7 @@ export class Erc721TimelockPlugin
       this.logger.debug(
         `Fetched ${merkleTree.leafCount} commitments with merkle root ${merkleTree.root}.`
       );
-      const proof = MerkleMembershipProof.fromJSON(input.proof);
+      const proof = await MerkleMembershipProof.fromJSON(input.proof);
       this.logger.debug(
         `Verifying proof for merkle root ${proof.publicInput.merkleRoot}...`
       );

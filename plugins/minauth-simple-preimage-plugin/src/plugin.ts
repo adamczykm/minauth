@@ -131,7 +131,7 @@ export class SimplePreimagePlugin
         res.status(400).json({ message: 'Error updating roles' });
       }
     })
-    .get('/admin/roles', (_, res) => res.status(200).json(this.roles));
+    .get('/admin/roles', (_, res) => {res.status(200).json(this.roles)});
 
   /**
    * Check if produced output is still valid. If the roles dictionary was edited

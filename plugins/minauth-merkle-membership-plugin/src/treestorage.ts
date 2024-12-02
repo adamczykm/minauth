@@ -205,12 +205,12 @@ export class GenericMinaBlockchainTreeStorage<T extends TreeStorage>
 {
   private underlyingStorage: T;
   private contract: TreeRootStorageContract;
-  private mkTx: (txFn: () => void) => TaskEither<string, void>;
+  private mkTx: (txFn: () => Promise<void>) => TaskEither<string, void>;
 
   constructor(
     storage: T,
     contract: TreeRootStorageContract,
-    mkTx: (txFn: () => void) => TaskEither<string, void>
+    mkTx: (txFn: () => Promise<void>) => TaskEither<string, void>
   ) {
     this.underlyingStorage = storage;
     this.contract = contract;
@@ -236,7 +236,7 @@ export class GenericMinaBlockchainTreeStorage<T extends TreeStorage>
       TE.chain(({ onChainRoot, offChainRoot }) => {
         return onChainRoot.equals(offChainRoot).toBoolean()
           ? TE.of(undefined)
-          : this.mkTx(() => this.contract.treeRoot.set(offChainRoot));
+          : this.mkTx(() => Promise.resolve(this.contract.treeRoot.set(offChainRoot)));
       })
     );
   }
@@ -291,7 +291,7 @@ function initializeGenericMinaBlockchainTreeStorage<T extends TreeStorage>(
 
   const feePayerPublicKey = feePayerPrivateKey.toPublicKey();
 
-  const mkTx = (txFn: () => void): TaskEither<string, void> =>
+  const mkTx = (txFn: () => Promise<void>): TaskEither<string, void> =>
     fromFailablePromise(async () => {
       const txn = await Mina.transaction(feePayerPublicKey, txFn);
       await txn.prove();
@@ -321,6 +321,7 @@ function initializeGenericMinaBlockchainTreeStorage<T extends TreeStorage>(
             AccountUpdate.fundNewAccount(feePayerPublicKey);
             contractInstance.treeRoot.set(treeRoot);
             contractInstance.deploy();
+            return Promise.resolve();
           })
         : blockchainStorage.updateTreeRootOnChainIfNecessary()
     )

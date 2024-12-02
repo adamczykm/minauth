@@ -51,7 +51,7 @@ export class SimplePreimageProver
     this.logger.debug('Building proof started.');
     const proof = await ProvePreimageProgram.baseCase(publicInput, secretInput);
     this.logger.debug('Building proof finished.');
-    return proof.toJSON();
+    return proof.proof.toJSON();
   }
 
   /** Fetches a list of hashes recognized by the server. */
